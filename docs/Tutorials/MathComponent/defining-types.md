@@ -8,6 +8,8 @@ For this tutorial, you need one type definition. The type will define an enumera
 
 ## In this section 
 
+In this section of the tutorial, you will create a Types directory and add the directory to the project build. You will define the types of mathmatic operations in an F Prime Fprime (fpp) file.
+
 ## Setup 
 
 To start, create a directory where your type(s) will live:
@@ -31,6 +33,7 @@ Here you have created an empty fpp file named MathTypes in the Types directory.
 Use your favorite text editor, visual studios, nano, vim, etc..., and add the following to `MathTypes.fpp`.
 
 ```
+# In: MathTypes.fpp
 module MathModule{ 
 
     @ Math operations
@@ -42,16 +45,16 @@ module MathModule{
   }
 }
 ```
-> Important note: think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use the MathModule module. 
+> Important note: think of modules similar to a cpp namespace. Whenever you want to make use of the enumeration, `MathOp`, you will need to use `MathModule`. 
 
 Above you have created an enumation of the four math types that are used in this tutorial.
 
  
 ## Adding to the Build 
 
-To specify how `MathTypes.fpp` should build with the project, you need to make two modifications to the MathProject. First, you must create and edit `CMakeLists.txt` in `Types` to include `MathTypes.fpp` into the build. Second, add the `Types` directory to the overall project build by adding to `project.cmake`. 
+To specify how `MathTypes.fpp` should build with the project, you need to make two modifications to the MathProject. 
 
-### First Modification 
+1. Create and edit `CMakeLists.txt` in `Types` to include `MathTypes.fpp` into the build.  
 
 To create CMakeLists.txt use:
 
@@ -72,9 +75,9 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-### Second Modification 
+2. Add the `Types` directory to the overall project build by adding to `project.cmake`. 
 
-Edit "project.cmake", located in the `MathProject` directory, and  add the following line. 
+Edit "project.cmake", located in the `MathProject` directory, and add the following line. 
 
 ```cmake 
 # In: MathProject/project.cmake
@@ -89,7 +92,7 @@ fprime-util generate
 fprime-util build 
 ```
 
-## Summary 
-In the section of the tutorial you have created the `Types` directory, `MathTypes.fpp`, defined one type, created a module, and added `Types` to the build. 
+## Conclusion
+At this point in the tutorial, you have successfully defined the `MathOp` type and added the types directory to the project build. 
 
 **Next:** [Constructing Ports](./constructing-ports.md)
