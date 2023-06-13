@@ -83,7 +83,7 @@ In `Components/MathSender`, open `MathSender.fpp` and entirely replace its conte
 
 
 @TODO (mathOpOut: MathOp has been refactored to OpRequest)
-```
+```fpp
 # In: MathSender.fpp
 module MathModule {
 
