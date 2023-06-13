@@ -9,7 +9,7 @@ As a reminder, below is the component behavior you are trying to implement in th
 ## Component Description 
 The `MathSender` is going to be an active component which will receive parameters, send parameters, log events, and send telemetry. 
 
-## Editing the Command Handler
+## Editing the Do Math Command Handler
 
 The handler `DO_MATH_handler` is called when the `MathSender` component receives a `DO_MATH` command. This handler overrides the corresponding pure virtual function in the auto-generated base class. Fill in the handler so that it looks like this:
 

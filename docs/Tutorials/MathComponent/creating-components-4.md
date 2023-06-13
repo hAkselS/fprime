@@ -2,9 +2,9 @@
 
 ## In this Section
 
-In this section you will complete the implementation of the `MathReciever` by filling in the `MathReceiver.cpp`. 
+In this section you will complete the implementation of the `MathReciever` by filling in `MathReceiver.cpp` and `MathReceiver.hpp`. 
 
-
+## Editing the Operation Handler
 Fill in the mathOpIn handler: In MathReceiver.cpp, complete the implementation of mathOpIn_handler so that it looks like this:
 
 ```cpp
@@ -59,8 +59,8 @@ void MathReceiver ::
 }//end MathOpIn_handler 
 ```
 
-**Explanation:**
-This code does the following:
+## About the Function 
+`MathOpIn_Handler` does the following:
 
 1. Compute an initial result based on the input values and the requested operation.
 
@@ -75,6 +75,7 @@ This code does the following:
 Note that in step 1, `op` is an enum (a C++ class type), and `op.e` is the corresponding numeric value (an integer type). Note also that in the `default` case we deliberately fail an assertion. This is a standard pattern for exhaustive case checking. We should never hit the assertion. If we do, then a bug has occurred: we missed a case.
 
 
+## Editing the Schedule Handler
 Fill in the schedIn handler in `MathReceiver.cpp`, complete the implementation of `schedIn_handler` so that it looks like this:
 
 ```cpp
@@ -91,9 +92,10 @@ void MathReceiver ::
     }
 }
 ```
-**Explanation:** 
+## About the Function  
 This code dispatches all the messages on the queue. Note that for a queued component, we have to do this dispatch explicitly in the schedIn handler. For an active component, the framework auto-generates the dispatch code.
 
+## Editing the Throttle Command Hanlder
 Fill in the `CLEAR_EVENT_THROTTLE` command handler: In `MathReceiver.cpp`, complete the implementation of `CLEAR_EVENT_THROTTLE_cmdHandler` so that it looks like this:
 
 ```cpp
@@ -112,9 +114,10 @@ void MathReceiver ::
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
 ```
-**Explanation:**
+## About the Function 
 The call to `log_ACTIVITY_HI_FACTOR_UPDATED_ThrottleClear` clears the throttling of the `FACTOR_UPDATED` event. The next two lines send a notification event and send a command response.
 
+## Writing a Parameter Checker
 Add the following function to `MathReceiver.cpp`. You will need to add the corresponding function header to `MathReceiver.hpp`. Note: this function is completely new, there is no prexisting stub for this function.
 
 ```cpp
@@ -146,15 +149,22 @@ void MathReceiver ::
 void parameterUpdated(FwPrmIdType id);
 ```
 
-**Explanation**
-This code implements an optional function that, if present, is called when a parameter is updated by command. The parameter identifier is passed in as the id argument of the function. Here we do the following:
+## Explanation
+This code implements an optional function that, if present, is called when a parameter is updated by command. The parameter identifier is passed in as the id argument of the function. Here the function does the following:
 
     If the parameter identifier is PARAMID_FACTOR (the parameter identifier corresponding to the FACTOR parameter), then get the parameter value and emit an event report.
 
     Otherwise fail an assertion. This code should never run, because there are no other parameters.
 
-## Summary
+Test the build:
 
-In this section you implemented the component behavior of MathReceiver. 
+```shell 
+# In: MathReceiver
+fprime-util build 
+```
+
+## Conclusion
+
+Congratulations, you have finished `MathReceiver`!
 
 **Next:** [Developing Deployments](./developing-deployments.md)
