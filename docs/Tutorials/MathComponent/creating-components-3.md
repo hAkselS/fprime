@@ -2,9 +2,13 @@
 
 ## In this Section 
 
-In this section you will begin creating `MathReceiver` following the same steps as the last section. Note, that the `MathReceiver` a little different than the `MathSender`.
+In this section you will begin creating `MathReceiver` following the same steps as the last section. Note, that the `MathReceiver` is a little different than the `MathSender`.
 
-**Component Description** The `MathReceiver` is a queued component which receives parameters, send parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component. 
+## Component Description
+
+The `MathReceiver` is a queued component which receives parameters, send parameters, logs events, and sends telemetry. With this is mind, use the following command to create the `MathReceiver` component. 
+
+## Creating the MathReceiver
 
 ```shell
 # In: Components
@@ -50,9 +54,11 @@ Before doing anything to the files you have just generated, try building:
 fprime-util build
 ```
 
+## Editing the F Prime Prime Model 
 Now that you have created the component, you can implement the component behavior in the fpp model. Use a text editor to replace the existing MathReceiver.fpp with the following: 
 
 ```fpp
+# In: MathReceiver.fpp
 module MathModule {
 
   @ Component for receiving and performing a math operation
@@ -161,7 +167,7 @@ module MathModule {
 }
 ```
 
-**Explanation:** 
+## About this Component 
 This code defines a component `Ref.MathReceiver`.
 The component is **queued**, which means it has a queue
 but no thread.
@@ -228,6 +234,7 @@ For more information, see
 [_The FPP User's Guide_](https://fprime-community.github.io/fpp/fpp-users-guide.html#Defining-Components).
 
 
+## Generate the Implementation Files
 
 
 Generate cpp and hpp files based off your `MathReceiver` by using: 
@@ -252,8 +259,10 @@ Test the build:
 fprime-util build 
 ```
 
-## Summary 
-
-You just created a queued component stub, filled in the fpp file, and wrote component charactaristics in the fpp file. 
+## Conclusion
+You are two thirds of the way through finishing `MathReceiver`.
+So far, you have created a queued component stub, filled in the fpp 
+file, and wrote component charactaristics in `MathReceiver.fpp`. Next,
+you will write the behavior for `MathReceiver`.
 
 **Next:** [Creating Components 4](./creating-components-4.md)
