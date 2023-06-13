@@ -1,14 +1,14 @@
 # Develop Deployments
 
 ## Background 
-The deployment is the portion of F' that will actually run on the spacecraft. Think of the deployment as an executable. 
+The deployment is the portion of F' that will actually run on the spacecraft. Think of the deployment like an executable. 
 
 ## In this Section
 
-In this part of the tutorial, you will create a deployment and integrate the deployment with the other work you have completed. At the end of this section, you will run the F' ground data system and test your components by actually running them! 
+In this section, you will create a deployment and integrate the deployment with the other work you have completed. At the end of this section, you will run the F' ground data system and test your components by actually running them! 
 
 
-
+## Create a Deployment
 Use the following command to create the deployment: 
 
 ```shell 
@@ -41,6 +41,7 @@ fprime-util build
 ```
 
 
+## Add Component Instances to the Deployment
 Create an instance for `MathSender` in `instances.fpp`. 
 
 ```fpp 
@@ -56,12 +57,14 @@ instance mathReceiver: MathModule.MathReceiver base id 0x2700 \
   queue size Default.QUEUE_SIZE
 ```
 
-**Explanation: 
+## Explanation
 
 For the `MathSender` you defined the queue size, stack size,
 and thread priority. The default queue and stack sizes were used above.
 
 The `MathReceiver was implemented with base identifier 0x2700 and the default queue size.
+
+## Update the Topology 
 
 Add the instances you created in `instances.fpp` to the project topology. 
 
@@ -74,10 +77,9 @@ instance mathReceiver
 
 > This step highlights the importants of capitalization. The easiest way to differentiate between the component definition and instance is the capitalization.
 
-**Explanation:** 
+## Explanation 
 This code defines an instance `mathSender` of component
-`MathSender`.
-It has **base identifier** 0xE00.
+`MathSender`. It has **base identifier** 0xE00.
 FPP adds the base identifier to each the relative identifier
 defined in the component to compute the corresponding
 identifier for the instance.
@@ -85,6 +87,7 @@ For example, component `MathSender` has a telemetry channel
 `MathOp` with identifier 1, so instance `mathSender`
 has a command `MathOp` with identifier 0xE01.
 
+## Add Packets 
 
 Add packets for MathSender and MathReceiver in DeploymentPackets.xml
 
@@ -103,10 +106,10 @@ Add packets for MathSender and MathReceiver in DeploymentPackets.xml
   </packet>
 ```
 
-**Explanation:**
-hese lines describe the packet definitions for the `mathSender` and `mathReceiver` telemetry channels.
+## Explanation 
+These lines describe the packet definitions for the `mathSender` and `mathReceiver` telemetry channels.
 
-
+## Check for Unconnected Ports
 Check to make sure all of the ports have been connected: 
 
 ```shell 
@@ -115,7 +118,7 @@ fprime-util fpp-check -u unconnected.txt
 cat unconnected.txt 
 ```
 
-At this point in time, several `mathSender` and `mathReceiver` functions (such as `mathOpIn` or `schedIn)` should still be not connected. Hence, they should appear on this list. 
+At this point in time, several `mathSender` and `mathReceiver` functions (such as `mathOpIn` or `schedIn`) should still be not connected. Hence, they should appear on this list. 
 
 Go into `topology.fpp`, connect `mathReceiver.schedIn` to rate group one using the code below. You can either add this code in the rate groupo section or the user code section, do what makes the most sense to you:  
 
@@ -127,7 +130,7 @@ rateGroup1.RateGroupMemberOut[3] -> mathReceiver.schedIn
 
 > Note: `[3]` is the next available index in rate group one.
 
-**Explanation:** 
+## Explanation
 This line adds the connection that drives the `schedIn`
 port of the `mathReceiver` component instance.
 
@@ -141,7 +144,6 @@ Add the connections between the mathSender and mathReceiver
 mathSender.mathOpOut -> mathReceiver.mathOpIn
 mathReceiver.mathResultOut -> mathSender.mathResultIn
 ```
-**Explanation: @TODO**
 
 Verify that none of the math ports are unconnected 
 
