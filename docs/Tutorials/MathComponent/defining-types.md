@@ -8,6 +8,10 @@ For this tutorial, you need one type definition. The type will define an enumera
 
 ## In this section 
 
+In this section, you will create a `Types` directory and add 
+it to the project build. You will create an enumeration 
+to represent several Mathmatic operations.
+
 ## Setup 
 
 To start, create a directory where your type(s) will live:
@@ -49,9 +53,9 @@ Above you have created an enumation of the four math types that are used in this
  
 ## Adding to the Build 
 
-To specify how `MathTypes.fpp` should build with the project, you need to make two modifications to the MathProject. First, you must create and edit `CMakeLists.txt` in `Types` to include `MathTypes.fpp` into the build. Second, add the `Types` directory to the overall project build by adding to `project.cmake`. 
+To specify how `MathTypes.fpp` should build with the project, you need to make two modifications to the MathProject. 
 
-### First Modification 
+1. Create and edit `CMakeLists.txt` in `Types` to include `MathTypes.fpp` into the build.
 
 To create CMakeLists.txt use:
 
@@ -72,9 +76,9 @@ set(SOURCE_FILES
 register_fprime_module()
 ```
 
-### Second Modification 
+2. Add the `Types` directory to the overall project build by adding to `project.cmake`.  
 
-Edit "project.cmake", located in the `MathProject` directory, and  add the following line. 
+Edit `project.cmake`, located in the `MathProject` directory, and  add the following line. 
 
 ```cmake 
 # In: MathProject/project.cmake
@@ -89,9 +93,9 @@ fprime-util generate
 fprime-util build 
 ```
 
-## Summary 
-In the section of the tutorial you have created the `Types` directory, `MathTypes.fpp`, defined one type, created a module, and added `Types` to the build. 
+## Conclusion 
+At this point you have successfully created the `MathOp` type 
+and added it to the project build. You can add more types here 
+later if you feel so inclined. 
 
 **Next:** [Constructing Ports](./constructing-ports.md)
-
-bob 
