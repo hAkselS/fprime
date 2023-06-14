@@ -1,4 +1,4 @@
-# Develop Deployments
+# Developing Deployments
 
 ## Background 
 The deployment is the portion of F' that will actually run on the spacecraft. Think of the deployment like an executable. 
